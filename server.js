@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+require('@remy/envy');
 const memory = require('./index');
 const app = express();
 
@@ -39,7 +40,12 @@ app.get(['/:id.:format(raw)', '/:id'], (req, res) => {
   res.send(body);
 });
 
-app.post('/', (req, res) => res.json(memory.put(req)));
+app.post('/', (req, res) => {
+  const result = memory.put(req);
+  res
+    .header({ Location: `${process.env.REDIRECT_URL}/${result.id}` })
+    .json(result);
+});
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port);
