@@ -43,6 +43,7 @@ app.get(['/:id.:format(raw)', '/:id'], (req, res) => {
 app.post('/', (req, res) => {
   const result = memory.put(req);
   res
+    .status(303)
     .header({ Location: `${process.env.REDIRECT_URL}/${result.id}` })
     .json(result);
 });
