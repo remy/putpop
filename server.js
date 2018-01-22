@@ -1,4 +1,5 @@
 const express = require('express');
+const { stringify } = require('querystring');
 const bodyParser = require('body-parser');
 require('@remy/envy');
 const memory = require('./index');
@@ -41,10 +42,11 @@ app.get(['/:id.:format(raw)', '/:id'], (req, res) => {
 });
 
 app.post('/', (req, res) => {
+  const query = req.url.startsWith('/?') ? `?${stringify(req.query)}` : '';
   const result = memory.put(req);
   res
     .status(303)
-    .header({ Location: `${process.env.REDIRECT_URL}/${result.id}` })
+    .header({ Location: `${process.env.REDIRECT_URL}/${result.id}${query}` })
     .json(result);
 });
 
