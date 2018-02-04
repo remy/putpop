@@ -1,15 +1,14 @@
 {
   "name": "putpop",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Tiny sever that remember a single payload, then discards it once requested.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Remy Sharp",
+  "license": "MIT",
   "dependencies": {
     "@remy/envy": "^3.0.0",
     "body-parser": "^1.18.2",
@@ -19,5 +18,13 @@
   },
   "devDependencies": {
     "jest": "^22.1.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remy/putpop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/remy/putpop/issues"
+  },
+  "homepage": "https://github.com/remy/putpop#readme"
 }
